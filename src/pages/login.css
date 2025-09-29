@@ -1,0 +1,505 @@
+/* login.css - هوية بصرية فريدة ومتناسقة مع التطبيق */
+
+/* متغيرات الألوان والخطوط (متناسقة مع Home.css و SignUp.css) */
+:root {
+  --primary-color: #4361ee;
+  --primary-dark: #3a56d4;
+  --secondary-color: #7209b7;
+  --accent-color: #f72585;
+  --light-color: #f8f9fa;
+  --dark-color: #212529;
+  --success-color: #4cc9f0;
+  --warning-color: #f9c74f;
+  --gradient-primary: linear-gradient(135deg, #4361ee, #3a0ca3);
+  --gradient-secondary: linear-gradient(135deg, #7209b7, #f72585);
+  --gradient-auth: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-form: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.15);
+  --shadow-input: 0 5px 15px rgba(0, 0, 0, 0.05);
+  --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.08);
+  --border-radius: 20px;
+  --border-radius-small: 12px;
+  --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* إعدادات عامة */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--gradient-auth);
+  min-height: 100vh;
+  direction: rtl;
+  line-height: 1.6;
+  color: var(--dark-color);
+}
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* تأثيرات الخلفية الديناميكية */
+.background-animation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: float 6s ease-in-out infinite;
+}
+
+.circle:nth-child(1) {
+  width: 80px;
+  height: 80px;
+  top: 10%;
+  right: 10%;
+  animation-delay: 0s;
+}
+
+.circle:nth-child(2) {
+  width: 120px;
+  height: 120px;
+  top: 70%;
+  right: 80%;
+  animation-delay: 2s;
+}
+
+.circle:nth-child(3) {
+  width: 60px;
+  height: 60px;
+  top: 40%;
+  right: 70%;
+  animation-delay: 4s;
+}
+
+.circle:nth-child(4) {
+  width: 100px;
+  height: 100px;
+  top: 80%;
+  right: 20%;
+  animation-delay: 1s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* نموذج تسجيل الدخول */
+.auth-form {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  padding: 3.5rem 3rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.auth-form:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+.auth-form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 6px;
+  background: var(--gradient-primary);
+  z-index: 2;
+}
+
+.auth-form::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -50px;
+  width: 100px;
+  height: 100px;
+  background: var(--gradient-secondary);
+  border-radius: 50%;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-size: 2.4rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 1.2rem;
+}
+
+.auth-form h2::before {
+  content: '🔐';
+  position: absolute;
+  top: -10px;
+  right: 50%;
+  transform: translateX(50%);
+  font-size: 1.8rem;
+  opacity: 0.8;
+}
+
+.auth-form h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  transform: translateX(50%);
+  width: 100px;
+  height: 4px;
+  background: var(--gradient-secondary);
+  border-radius: 2px;
+}
+
+/* حقول الإدخال */
+.auth-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 1.2rem 1.5rem;
+  border: 2px solid #e9ecef;
+  border-radius: var(--border-radius-small);
+  font-size: 1rem;
+  transition: var(--transition);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-input);
+  position: relative;
+  z-index: 1;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+  transform: translateY(-2px);
+  background: white;
+}
+
+.auth-form input::placeholder {
+  color: #6c757d;
+  transition: var(--transition);
+}
+
+.auth-form input:focus::placeholder {
+  color: transparent;
+}
+
+/* تأثيرات متقدمة لحقول الإدخال */
+.input-icon {
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary-color);
+  opacity: 0.6;
+  transition: var(--transition);
+  z-index: 2;
+}
+
+.auth-form input:focus + .input-icon {
+  opacity: 1;
+  color: var(--secondary-color);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.input-label {
+  position: absolute;
+  top: 50%;
+  right: 1.2rem;
+  transform: translateY(-50%);
+  color: #6c757d;
+  transition: var(--transition);
+  pointer-events: none;
+  background: white;
+  padding: 0 0.5rem;
+}
+
+.auth-form input:focus + .input-icon + .input-label,
+.auth-form input:not(:placeholder-shown) + .input-icon + .input-label {
+  top: 0;
+  right: 0.8rem;
+  font-size: 0.8rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* زر تسجيل الدخول */
+.auth-form button {
+  padding: 1.2rem 2rem;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: var(--shadow-light);
+  letter-spacing: 0.5px;
+}
+
+.auth-form button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0%;
+  height: 100%;
+  background: var(--gradient-secondary);
+  transition: var(--transition);
+  z-index: -1;
+}
+
+.auth-form button:hover::before {
+  width: 100%;
+}
+
+.auth-form button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: var(--shadow-hover);
+  letter-spacing: 1px;
+}
+
+.auth-form button:active {
+  transform: translateY(0) scale(1);
+}
+
+.auth-form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.auth-form button:disabled:hover::before {
+  width: 0%;
+}
+
+/* روابط إضافية */
+.auth-links {
+  text-align: center;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.auth-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-secondary);
+  transition: var(--transition);
+}
+
+.auth-link:hover {
+  color: var(--secondary-color);
+}
+
+.auth-link:hover::after {
+  width: 100%;
+}
+
+.auth-link.forgot-password {
+  color: var(--accent-color);
+}
+
+.auth-link.forgot-password::after {
+  background: var(--accent-color);
+}
+
+/* رسائل التنبيه */
+.alert {
+  padding: 1rem 1.5rem;
+  border-radius: var(--border-radius-small);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 500;
+  transition: var(--transition);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-success {
+  background: rgba(76, 201, 240, 0.15);
+  color: var(--success-color);
+  border: 1px solid rgba(76, 201, 240, 0.3);
+}
+
+.alert-error {
+  background: rgba(247, 37, 133, 0.15);
+  color: var(--accent-color);
+  border: 1px solid rgba(247, 37, 133, 0.3);
+}
+
+/* تأثيرات دخول الصفحة */
+.auth-container {
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.auth-form {
+  animation: slideInUp 0.8s ease 0.2s both;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-form h2 {
+  animation: fadeIn 0.8s ease 0.4s both;
+}
+
+.auth-form form {
+  animation: fadeIn 0.8s ease 0.6s both;
+}
+
+/* تصميم متجاوب */
+@media (max-width: 768px) {
+  .auth-container {
+    padding: 1rem;
+  }
+  
+  .auth-form {
+    padding: 2.5rem 2rem;
+  }
+  
+  .auth-form h2 {
+    font-size: 2rem;
+  }
+  
+  .circle {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-form {
+    padding: 2rem 1.5rem;
+  }
+  
+  .auth-form h2 {
+    font-size: 1.8rem;
+  }
+  
+  .auth-form input {
+    padding: 1rem 1.2rem;
+  }
+  
+  .auth-form button {
+    padding: 1rem 1.5rem;
+  }
+}
+
+/* تأثيرات إضافية للتحقق من الصحة */
+.auth-form input:valid {
+  border-left: 4px solid var(--success-color);
+}
+
+.auth-form input:invalid:not(:placeholder-shown) {
+  border-left: 4px solid var(--accent-color);
+}
+
+/* مؤشر التحميل */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 10px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

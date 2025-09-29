@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <title>Viewer - Decisions</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style> body{font-family:Arial; direction:rtl; padding:20px} table{width:100%;border-collapse:collapse} th,td{border:1px solid #ccc;padding:8px;text-align:right} button{padding:6px} pre{background:#f4f4f4;padding:10px}</style>
+</head>
+<body>
+  <h2>سجل القرارات (شفافية)</h2>
+  <div id="list">جارٍ التحميل...</div>
+
+  <script>
+    async function load() {
+      const res = await fetch('/api/decisions');
+      const j = await res.json();
+      if (!res.ok) { document.getElementById('list').innerText = 'Error: ' + JSON.stringify(j); return; }
+
+      const rows = j.decisions;
+      if (rows.length === 0) { document.getElementById('list').innerText = 'لا توجد قرارات بعد.'; return; }
+
+      let html = '<table><tr><th>#</th><th>المجال</th><th>معاينة المدخلات</th><th>الوقت</th><th>Hedera FileId</th><th>عرض</th></tr>';
+      for (const r of rows) {
+        html += `<tr>
+          <td>${r.id}</td>
+          <td>${r.domain || '-'}</td>
+          <td><pre>${r.input_preview}</pre></td>
+          <td>${r.timestamp}</td>
+          <td>${r.fileId}</td>
+          <td><button onclick="viewFile('${r.fileId}')">عرض</button></td>
+        </tr>`;
+      }
+      html += '</table><div id="fileArea"></div>';
+      document.getElementById('list').innerHTML = html;
+    }
+
+    async function viewFile(fileId) {
+      const res = await fetch('/api/file/' + encodeURIComponent(fileId));
+      const j = await res.json();
+      const area = document.getElementById('fileArea');
+      if (res.ok) area.innerHTML = `<h3>محتوى File ${fileId}</h3><pre>${j.content}</pre>`;
+      else area.innerHTML = `<pre>خطأ: ${JSON.stringify(j)}</pre>`;
+    }
+
+    load();
+  </script>
+</body>
+</html>

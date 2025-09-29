@@ -1,0 +1,6 @@
+require('dotenv').config();
+
+module.exports = {
+  HEDERA_OPERATOR_ID: process.env.HEDERA_OPERATOR_ID || "0.0.6450908",
+  HEDERA_OPERATOR_KEY: process.env.HEDERA_OPERATOR_KEY || "302e020100300506032b6570042204206d848c1919997f622ee63bb26b5988bfdc28e779accd1faf87b852cb65a99548",
+};

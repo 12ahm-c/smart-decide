@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin - Register Decision</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: Arial, "Noto Naskh Arabic", sans-serif; padding: 20px; direction: rtl; }
+    textarea, input { width: 100%; padding: 8px; margin: 6px 0; box-sizing: border-box; }
+    button { padding: 10px 16px; margin-top: 8px; cursor: pointer; }
+    pre { background:#f4f4f4; padding:10px; overflow:auto; }
+  </style>
+</head>
+<body>
+  <h2>اتخاذ القرار — تسجيل على Hedera</h2>
+
+  <label>المجال (domain):</label>
+  <input id="domain" placeholder="مثال: family-budget" />
+
+  <label>جميع المدخلات (inputs) — يمكن أن تكون JSON أو نص مفصل:</label>
+  <textarea id="inputs" rows="6" placeholder='مثال: {"monthlyIncome":500, "fixedExpenses":200, ...}'></textarea>
+
+  <label>القرار النهائي (final decision):</label>
+  <textarea id="finalDecision" rows="3" placeholder="اكتب القرار النهائي هنا"></textarea>
+
+  <button id="submitBtn">اتخاذ القرار (حفظ على Hedera)</button>
+
+  <h3>النتيجة:</h3>
+  <div id="result"></div>
+
+  <script>
+    const submitBtn = document.getElementById('submitBtn');
+    const resultDiv = document.getElementById('result');
+
+    submitBtn.onclick = async () => {
+      submitBtn.disabled = true;
+      resultDiv.innerHTML = 'جارٍ المعالجة...';
+
+      const domain = document.getElementById('domain').value || null;
+      const inputs = document.getElementById('inputs').value || '';
+      const finalDecision = document.getElementById('finalDecision').value || '';
+
+      const payload = {
+        domain,
+        input: `INPUTS:\n${inputs}\n\nFINAL_DECISION:\n${finalDecision}`
+      };
+
+      try {
+        const resp = await fetch('/api/decision', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await resp.json();
+        if (resp.ok) {
+          resultDiv.innerHTML = `
+            <p>✅ تم التخزين على Hedera FileId: <b>${data.blockchainId}</b></p>
+            <p>AI result: ${data.result}</p>
+            <button id="viewBtn">عرض المحتوى من Hedera</button>
+            <div id="fileContent"></div>
+          `;
+          document.getElementById('viewBtn').onclick = async () => {
+            const r = await fetch('/api/file/' + encodeURIComponent(data.blockchainId));
+            const j = await r.json();
+            document.getElementById('fileContent').innerHTML = '<pre>' + (j.content || j.error) + '</pre>';
+          };
+        } else {
+          resultDiv.innerHTML = <pre>خطأ: ${JSON.stringify(data)}</pre>;
+        }
+      } catch (err) {
+        resultDiv.innerHTML = <pre>Exception: ${err.message}</pre>;
+      } finally {
+        submitBtn.disabled = false;
+      }
+    };
+  </script>
+</body>
+</html>
