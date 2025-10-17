@@ -5,17 +5,9 @@ import Login from './pages/Login';
 import Signup from './pages/SignUp';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
-import DecisionForm from './pages/DecisionForm';
-import DecisionOutput from './pages/DecisionOutput';
-import Choix from './pages/Choix';
-import MemberCodeEntry from './pages/MemberCodeEntry';
-import AdminCreateOrg from './pages/AdminCreateOrg';
-import AdminDashboard from './pages/AdminDashboard.js';
-
-
-
-
-
+import CreateSession from './pages/CreateSession';
+import JoinSession from './pages/JoinSession';
+import SessionDashboard from './pages/SessionDashboard'
 function App() {
   const [token, setToken] = useState(null); // <-- هنا
 
@@ -27,19 +19,12 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard token={token} />} />
-<Route path="/form/:domainId" element={<DecisionForm token={token} />} />
-<Route path="/result/:domainId" element={<DecisionOutput />} />
-  <Route path="/choix" element={<Choix />} />
-  <Route path="/member-code-entry" element={<MemberCodeEntry token={token} />} />
-  <Route path="/admin-create-org" element={<AdminCreateOrg token={token} />} />
-    <Route path="/admin-Dashboard" element={<AdminDashboard token={token} />} />
-
-
+<Route path="/create-session" element={<CreateSession token={token} />} />
+<Route path="/join-session" element={<JoinSession token={token} />} />
+<Route path="/session/:sessionCode" element={<SessionDashboard token={token} />} />
       </Routes>
-      
     </Router>
   );
 }
 
 export default App;
-

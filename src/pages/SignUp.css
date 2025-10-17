@@ -1,404 +1,77 @@
-/* SignUp.css - هوية بصرية فريدة ومتناسقة مع التطبيق */
-
-/* متغيرات الألوان والخطوط (متناسقة مع Home.css) */
-:root {
-  --primary-color: #4361ee;
-  --primary-dark: #3a56d4;
-  --secondary-color: #7209b7;
-  --accent-color: #f72585;
-  --light-color: #f8f9fa;
-  --dark-color: #212529;
-  --success-color: #4cc9f0;
-  --gradient-primary: linear-gradient(135deg, #4361ee, #3a0ca3);
-  --gradient-secondary: linear-gradient(135deg, #7209b7, #f72585);
-  --gradient-form: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.15);
-  --shadow-input: 0 5px 15px rgba(0, 0, 0, 0.05);
-  --border-radius: 16px;
-  --border-radius-small: 10px;
-  --transition: all 0.3s ease;
-}
-
-/* إعدادات عامة */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--gradient-form);
-  min-height: 100vh;
-  direction: rtl;
-  line-height: 1.6;
-}
+/* SignUp.css */
+/* Simple and modern styling for SignUp Page */
 
 .auth-container {
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx=".5" cy=".5" r=".5"><stop offset="0%" stop-color="%234361ee" stop-opacity=".05"/><stop offset="100%" stop-color="%234361ee" stop-opacity="0"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23a)"/></svg>') no-repeat center center;
-  background-size: cover;
-  position: relative;
-  overflow: hidden;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
 }
 
-.auth-container::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(67, 97, 238, 0.1) 0%, transparent 70%);
-  animation: float 15s infinite linear;
-  z-index: -1;
-}
-
-@keyframes float {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  50% {
-    transform: translate(-5%, -5%) rotate(180deg);
-  }
-  100% {
-    transform: translate(0, 0) rotate(360deg);
-  }
-}
-
-/* نموذج التسجيل */
 .auth-form {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 3rem;
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   width: 100%;
-  max-width: 500px;
-  position: relative;
-  overflow: hidden;
-  transition: var(--transition);
-}
-
-.auth-form:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-hover);
-}
-
-.auth-form::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 5px;
-  background: var(--gradient-primary);
-  z-index: 2;
+  max-width: 400px;
+  text-align: center;
 }
 
 .auth-form h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 2.2rem;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: 700;
-  position: relative;
-  padding-bottom: 1rem;
-}
-
-.auth-form h2::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 50%;
-  transform: translateX(50%);
-  width: 80px;
-  height: 4px;
-  background: var(--gradient-secondary);
-  border-radius: 2px;
-}
-
-/* حقول الإدخال */
-.auth-form form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  margin-bottom: 25px;
+  color: #2c3e50;
 }
 
 .auth-form input {
-  padding: 1rem 1.5rem;
-  border: 2px solid #e9ecef;
-  border-radius: var(--border-radius-small);
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
   font-size: 1rem;
-  transition: var(--transition);
-  background: white;
-  box-shadow: var(--shadow-input);
-  position: relative;
+  transition: all 0.3s ease;
 }
 
 .auth-form input:focus {
   outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
-  transform: translateY(-2px);
+  border-color: #2980b9;
+  box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
 }
 
-.auth-form input::placeholder {
-  color: #6c757d;
-  transition: var(--transition);
-}
-
-.auth-form input:focus::placeholder {
-  color: transparent;
-}
-
-/* تأثيرات خاصة لحقول الإدخال */
-.input-container {
-  position: relative;
-}
-
-.input-icon {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--primary-color);
-  opacity: 0.7;
-  transition: var(--transition);
-}
-
-.auth-form input:focus + .input-icon {
-  opacity: 1;
-  color: var(--secondary-color);
-}
-
-/* زر الإرسال */
 .auth-form button {
-  padding: 1rem 2rem;
-  background: var(--gradient-primary);
+  width: 100%;
+  padding: 12px;
+  background-color: #2980b9;
   color: white;
   border: none;
-  border-radius: 50px;
+  border-radius: 25px;
   font-size: 1.1rem;
-  font-weight: 600;
   cursor: pointer;
-  transition: var(--transition);
-  margin-top: 1rem;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  box-shadow: var(--shadow);
-}
-
-.auth-form button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 0%;
-  height: 100%;
-  background: var(--gradient-secondary);
-  transition: var(--transition);
-  z-index: -1;
-}
-
-.auth-form button:hover::before {
-  width: 100%;
+  transition: all 0.3s ease;
 }
 
 .auth-form button:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: var(--shadow-hover);
+  background-color: #3498db;
 }
 
-.auth-form button:active {
-  transform: translateY(0) scale(1);
+/* File input styling (optional) */
+.auth-form input[type="file"] {
+  border: 1px dashed #ccc;
+  padding: 8px;
+  cursor: pointer;
 }
 
-/* رسائل التنبيه والتأكيد */
-.alert {
-  padding: 1rem;
-  border-radius: var(--border-radius-small);
-  margin-bottom: 1rem;
-  text-align: center;
-  font-weight: 500;
-  transition: var(--transition);
+.auth-form input[type="file"]:hover {
+  border-color: #2980b9;
 }
 
-.alert-success {
-  background: rgba(76, 201, 240, 0.2);
-  color: var(--success-color);
-  border: 1px solid var(--success-color);
-}
-
-.alert-error {
-  background: rgba(247, 37, 133, 0.2);
-  color: var(--accent-color);
-  border: 1px solid var(--accent-color);
-}
-
-/* تأثيرات دخول الصفحة */
-.auth-container {
-  animation: fadeIn 1s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.auth-form {
-  animation: slideInUp 0.8s ease 0.2s both;
-}
-
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.auth-form h2 {
-  animation: fadeIn 0.8s ease 0.4s both;
-}
-
-.auth-form form {
-  animation: fadeIn 0.8s ease 0.6s both;
-}
-
-/* عناصر عائمة للخلفية */
-.floating-elements {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  right: 0;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.floating-element {
-  position: absolute;
-  background: var(--gradient-primary);
-  opacity: 0.1;
-  border-radius: 50%;
-  animation: float-element 20s infinite linear;
-}
-
-.floating-element:nth-child(1) {
-  width: 80px;
-  height: 80px;
-  top: 20%;
-  right: 15%;
-  animation-delay: 0s;
-}
-
-.floating-element:nth-child(2) {
-  width: 120px;
-  height: 120px;
-  top: 70%;
-  right: 85%;
-  animation-delay: -7s;
-}
-
-.floating-element:nth-child(3) {
-  width: 60px;
-  height: 60px;
-  top: 85%;
-  right: 25%;
-  animation-delay: -14s;
-}
-
-@keyframes float-element {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  33% {
-    transform: translate(30px, -50px) rotate(120deg);
-  }
-  66% {
-    transform: translate(-20px, 20px) rotate(240deg);
-  }
-  100% {
-    transform: translate(0, 0) rotate(360deg);
-  }
-}
-
-/* تصميم متجاوب */
-@media (max-width: 768px) {
-  .auth-container {
-    padding: 1rem;
-  }
-  
-  .auth-form {
-    padding: 2rem;
-  }
-  
-  .auth-form h2 {
-    font-size: 1.8rem;
-  }
-}
-
+/* Responsive adjustments */
 @media (max-width: 480px) {
   .auth-form {
-    padding: 1.5rem;
+    padding: 30px 20px;
   }
-  
-  .auth-form h2 {
-    font-size: 1.6rem;
-  }
-  
-  .auth-form input {
-    padding: 0.8rem 1rem;
-  }
-  
-  .auth-form button {
-    padding: 0.8rem 1.5rem;
-  }
-}
-
-/* تأثيرات إضافية للتحقق من الصحة */
-.auth-form input:valid {
-  border-left: 4px solid var(--success-color);
-}
-
-.auth-form input:invalid:not(:placeholder-shown) {
-  border-left: 4px solid var(--accent-color);
-}
-
-/* رابط العودة للصفحة الرئيسية */
-.back-link {
-  text-align: center;
-  margin-top: 1.5rem;
-}
-
-.back-link a {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 500;
-  transition: var(--transition);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.back-link a:hover {
-  color: var(--secondary-color);
-  text-decoration: underline;
 }
