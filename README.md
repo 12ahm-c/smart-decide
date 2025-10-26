@@ -1,70 +1,181 @@
-# Getting Started with Create React App
+# 🧠 SMART-DECIDE  
+**AI-Powered Decision-Making Platform with Hedera Integration**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![React](https://img.shields.io/badge/Frontend-React-blue?logo=react)
+![NodeJS](https://img.shields.io/badge/Backend-Node.js-green?logo=node.js)
+![Hedera](https://img.shields.io/badge/Blockchain-Hedera-purple?logo=hedera)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+![Status](https://img.shields.io/badge/Status-Building%20For%20Hedera%20Hackathon-orange)
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Overview
 
-### `npm start`
+**Smart-Decide** is a web platform that helps teams and individuals make smarter, fairer, and more transparent decisions.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+💬 Users can:
+- Create or join **discussion sessions**
+- Share and debate **ideas**
+- Let **AI analyze** contributions
+- Store the **winning idea** on **Hedera Hashgraph** for immutable transparency
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🎯 Problem Statement
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Group decisions are often biased, unstructured, or forgotten.  
+**Smart-Decide** introduces transparency, automation, and blockchain-backed trust into collaborative idea evaluation.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ✨ Key Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+✅ **AI-Powered Idea Analysis** — Uses TensorFlow Universal Sentence Encoder to analyze and score ideas.  
+✅ **Hedera Integration** — Stores verified decisions on Hedera’s network for transparency.  
+✅ **Authentication** — Secure login with JWT and bcrypt.  
+✅ **Session System** — Create, join, and manage idea discussion sessions.  
+✅ **File Uploads** — Attach supporting documents to your ideas.  
+✅ **SQLite Database** — Fast and simple local storage.  
+✅ **Responsive UI** — Built with React and modern design principles.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 💡 Tech Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+| Layer | Technology |
+|-------|-------------|
+| **Frontend** | React, React Router, Lucide Icons |
+| **Backend** | Node.js, Express.js |
+| **Database** | SQLite |
+| **AI / ML** | TensorFlow.js, Universal Sentence Encoder |
+| **Blockchain** | Hedera SDK (`@hashgraph/sdk`) |
+| **Auth** | JWT, bcrypt |
+| **Dev Tools** | Nodemon, Concurrently |
+| **Styling** | Tailwind CSS, custom components |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🌐 Hedera Integration
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Smart-Decide integrates with **Hedera Hashgraph** for verifiable, tamper-proof record storage.
 
-## Learn More
+Example of recording a session result:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```js
+import { Client, TopicCreateTransaction } from "@hashgraph/sdk";
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+const client = Client.forTestnet()
+  .setOperator(process.env.MY_ACCOUNT_ID, process.env.MY_PRIVATE_KEY);
 
-### Code Splitting
+async function recordDecision(summary) {
+  const tx = await new TopicCreateTransaction()
+    .setMemo(`Smart-Decide: ${summary}`)
+    .execute(client);
+  console.log("✅ Decision recorded on Hedera:", tx);
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+```
+System Architecture
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+React Frontend (UI)
+   ↓
+Express Backend (API)
+   ↓
+AI Module (TensorFlow)
+   ↓
+SQLite Database
+   ↓
+Hedera Network (Blockchain Storage)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
 
-### Advanced Configuration
+```
+Clone Repository
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+git clone https://github.com/YOUR_USERNAME/smart-decide.git
+cd smart-decide
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
 
-### `npm run build` fails to minify
+```
+Install Dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+npm install
+
+```
+
+```
+Run Backend & Frontend Together
+
+npm run dev
+
+
+```
+```
+
+✅ Frontend → http://localhost:3000
+
+✅ Backend → http://localhost:5000
+
+
+```
+```
+
+🛡️ Security
+
+Passwords hashed with bcrypt
+
+Authentication with JWT
+
+Environment variables in .env
+
+CORS & input validation on backend
+
+
+
+```
+```
+🏆 Why Smart-Decide Stands Out
+
+💡 Innovation: Combines AI & Blockchain for transparent decision-making.
+🧩 Practical: Useful for schools, hackathons, startups, and organizations.
+⚙️ Technical Depth: Full-stack implementation with AI + Hedera.
+🌍 Impact: Promotes fairness, accountability, and transparency.
+
+
+```
+```
+
+🧑‍💻 Team Smart-Decide
+
+| Name                | Role                 | Focus               |
+| ------------------- | -------------------- | ------------------- |
+| **Sidahmed**        | Full Stack Developer | Frontend & Backend  |
+| **[Teammate Name]** | AI Engineer          | TensorFlow Analysis |
+| **[Teammate Name]** | Blockchain Developer | Hedera Integration  |
+
+
+
+```
+```
+
+🪙 Future Roadmap
+
+✅ AI-powered summaries of discussions
+
+✅ Hedera Consensus Service (HCS) for full transparency
+
+🕹️ Real-time chat & voice sessions
+
+🌐 Global leaderboard for session winners
+
+📱 Mobile app version using React Native
+
+
+
+```
+```
+
