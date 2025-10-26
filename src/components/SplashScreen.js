@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import logo from '../assets/logo.jpg';
 import './SplashScreen.css';
-import logo from '../assets/logo.png';
 
 const SplashScreen = () => {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ const SplashScreen = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // محاكاة عملية التحميل
+    // Simulate loading process
     const progressInterval = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) {
@@ -28,28 +28,38 @@ const SplashScreen = () => {
     if (isLoaded) {
       const timer = setTimeout(() => {
         navigate('/Home');
-      }, 1000);
-      
+      }, 1000); // Wait 1 second after loading is complete
+
       return () => clearTimeout(timer);
     }
   }, [isLoaded, navigate]);
 
   return (
     <div className="splash-container">
+      <div className="splash-background">
+        <div className="gradient-orb orb-1"></div>
+        <div className="gradient-orb orb-2"></div>
+        <div className="gradient-orb orb-3"></div>
+      </div>
+
       <div className="splash-content">
-        <img src={logo} alt="SmartDecide Logo" className="splash-logo" />
-        <h1 className="splash-title">SmartDecide</h1>
-        <p className="splash-subtitle">اتخذ قراراتك بذكاء وسهولة</p>
-        
-        {/* شريط التقدم */}
-        <div className="progress-container">
-          <div 
-            className="progress-bar" 
-            style={{ width: `${progress}% `}}
-          ></div>
+        <div className="logo-wrapper">
+          <div className="logo-ring"></div>
+          <img src={logo} alt="SmartDecide Logo" className="splash-logo" />
         </div>
-        
-        {/* نقاط تحميل متحركة */}
+
+        <h1 className="splash-title">SmartDecide</h1>
+        <p className="splash-subtitle">Make your decisions smart and easily</p>
+
+        {/* Progress Bar */}
+        <div className="progress-container">
+          <div className="progress-bar" style={{ width: `${progress}%` }}>
+            <div className="progress-glow"></div>
+          </div>
+          <span className="progress-text">{progress}%</span>
+        </div>
+
+        {/* Animated Loading Dots */}
         <div className="loading-dots">
           <span></span>
           <span></span>
