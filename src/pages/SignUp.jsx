@@ -49,57 +49,36 @@ const Signup = () => {
     setAvatarPreview(null);
   };
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
-    setSuccess('');
 
-    if (!formData.fullName || !formData.email || !formData.password) {
-      setError('All fields are required');
-      setIsLoading(false);
-      return;
-    }
-
-    if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters');
-      setIsLoading(false);
-      return;
-    }
+    const formDataToSend = new FormData();
+    formDataToSend.append('fullName', formData.fullName);
+    formDataToSend.append('email', formData.email);
+    formDataToSend.append('password', formData.password);
+    if (avatar) formDataToSend.append('avatar', avatar);
 
     try {
-      const formDataToSend = new FormData();
-      formDataToSend.append('fullName', formData.fullName);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('password', formData.password);
-      if (avatar) {
-        formDataToSend.append('avatar', avatar);
-      }
-
       const response = await fetch('http://localhost:5001/api/signup', {
         method: 'POST',
         body: formDataToSend,
       });
 
+      if (!response.ok) throw new Error('Network response was not ok');
+
       const data = await response.json();
+      alert('Account created successfully! 🎉');
 
-      if (!response.ok) {
-        throw new Error(data.message || 'Signup failed');
-      }
-
-      setSuccess('Account created! Redirecting to login...');
-      setTimeout(() => {
-        navigate('/login');
-      }, 2000);
-
-    } catch (err) {
-      setError(err.message || 'Failed to create account.');
+      // التوجيه إلى صفحة تسجيل الدخول مباشرة
+      navigate('/login'); 
+    } catch (error) {
+      console.error(error);
+      alert('Network error or server is down.');
     } finally {
       setIsLoading(false);
     }
-  };
-
-  return (
+  };  return (
     <div className="signup-container">
       <div className="signup-background">
         <div className="gradient-orb orb-1"></div>

@@ -2,7 +2,7 @@ import { ArrowLeft, Eye, EyeOff, Lock, Mail, Sparkles } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.jpg';
-import './Login.css';
+import './login.css';
 
 const Login = ({ setToken }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
