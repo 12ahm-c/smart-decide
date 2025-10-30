@@ -94,7 +94,7 @@ Hedera Network (Blockchain Storage)
 ```
 Clone Repository
 
-git clone https://github.com/YOUR_USERNAME/smart-decide.git
+git clone https://github.com/12ahm-c/smart-decide.git
 cd smart-decide
 
 
