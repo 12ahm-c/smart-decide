@@ -167,6 +167,7 @@ Smart-Decide has been officially built and verified for the **Hedera Hackathon**
 
 🎓 **Certificate of Participation:**  
 [View My Hedera Certificate](https://drive.google.com/file/d/1nkCqUF7SH9xUq6lB4DptphUbaXI5w4F6/view)
+[view another hedera Certficate](https://drive.google.com/file/d/16QRQPTsvCqQ1c63nQ1MmnTh2fFWebyLg/view?usp=sharing)
 
 ```
 ```
