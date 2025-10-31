@@ -151,11 +151,17 @@ CORS & input validation on backend
 
 🧑‍💻 Team Smart-Decide
 
-| Name                | Role                 | Focus               |
-| ------------------- | -------------------- | ------------------- |
-| **Sidahmed**        | Full Stack Developer | Frontend & Backend  |
-| **[Teammate Name]** | AI Engineer          | TensorFlow Analysis |
-| **[Teammate Name]** | Blockchain Developer | Hedera Integration  |
+## 🧠 Team Smart-Decide
+
+| Name             | Role                           | Focus & Responsibilities |
+| ---------------- | ------------------------------ | ------------------------- |
+| **Ahmed Ismail** | 🤖 AI & Blockchain Developer   | Responsible for **Hedera** and **AI integration** |
+| **Sidi Ahmed**   | ⚙️ Full Stack Developer        | Frontend & Backend Development |
+| **Med Lemin**    | 💡 Innovation Lead             | Project Strategy & Planning |
+| **Ramla**        | 🖥️ PowerPoint Designer         | Creating Presentations & Visual Content |
+| **Hamoud**       | 🧩 Assistant Designer           | Supporting UI & Layout Design |
+| **Saviya**       | 🎨 Visual Identity Designer     | Branding & Interface Consistency |
+| **Sidi Mohamed** | 🖼️ Graphic Producer            | Graphic Creation & Media Design |
 
 
 
